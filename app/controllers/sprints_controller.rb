@@ -153,7 +153,7 @@ class SprintsController < ApplicationController
   end
   
   def reload
-    Sprint.reload
+    Sprint.first.reload
     redirect_to sprints_path, notice: "Sprints reloaded."
   end
   
