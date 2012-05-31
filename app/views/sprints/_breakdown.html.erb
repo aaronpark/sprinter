@@ -1,0 +1,40 @@
+<div id="breakdown"></div>
+
+<script>
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'breakdown'
+		},
+		title: {
+			text: 'Breakdown'
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ this.y;
+			}
+		},
+		plotOptions: {
+			pie: {
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					formatter: function() {
+					  valueDecimals: 0
+						return '<b>'+ this.point.name +'</b>: '+ this.y;
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			data: [
+			  ['Tasks',     <%= @tasks.count %>],		
+				['Bugs',      <%= @bugs.count %>],
+				['Features',  <%= @features.count %>]
+			]
+		}]
+	});
+});
+</script>

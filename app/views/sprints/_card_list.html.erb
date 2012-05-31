@@ -1,0 +1,25 @@
+<% @cards.each do |card| %>
+  <% if card.card_updated.to_date == card_date %>
+    <% if card.card_type == 'Bug' %>
+      <% alertclass = 'alert-error' %>
+      <% badgeclass = 'badge-important' %>
+    <% elsif card.card_type == 'Story' %>
+      <% alertclass = 'alert-success' %>
+      <% badgeclass = 'badge-success' %>
+    <% else %>
+      <% alertclass = 'alert-info' %>
+      <% badgeclass = 'badge-info' %>
+    <% end %>
+    <div class="alert <%= alertclass %>">
+      <span class="badge <%= badgeclass %>"><%= card.key %></span>
+      <span class="badge <%= badgeclass %>"><%= card.status %></span>
+      <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
+      <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %P') %></span>
+      <% if card.points %>
+        <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
+      <% end %>
+      <br>
+      <h4><%= card.summary %></h4>
+    </div>
+  <% end %>
+<% end %>

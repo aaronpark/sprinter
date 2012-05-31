@@ -1,8 +1,12 @@
 Sprinter::Application.routes.draw do
+
+
   match 'sprints/reload' => 'sprints#reload'
 
-  resources :sprints
-
+  resources :sprints do
+    resources :cards
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

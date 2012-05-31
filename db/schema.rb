@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120531152150) do
+ActiveRecord::Schema.define(:version => 20120531205817) do
+
+  create_table "cards", :force => true do |t|
+    t.string   "summary"
+    t.text     "description"
+    t.string   "assignee"
+    t.integer  "points"
+    t.string   "status"
+    t.string   "key"
+    t.integer  "sprint_id"
+    t.string   "card_type"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.datetime "card_created"
+    t.datetime "card_updated"
+  end
 
   create_table "sprints", :force => true do |t|
     t.string   "name"

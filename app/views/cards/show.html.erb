@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Summary:</b>
+  <%= @card.summary %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @card.description %>
+</p>
+
+<p>
+  <b>Assignee:</b>
+  <%= @card.assignee %>
+</p>
+
+<p>
+  <b>Points:</b>
+  <%= @card.points %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @card.status %>
+</p>
+
+<p>
+  <b>Key:</b>
+  <%= @card.key %>
+</p>
+
+<p>
+  <b>Sprint:</b>
+  <%= @card.sprint_id %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @card.type %>
+</p>
+
+
+<%= link_to 'Edit', edit_card_path(@card) %> |
+<%= link_to 'Back', cards_path %>

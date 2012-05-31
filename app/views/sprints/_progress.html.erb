@@ -1,0 +1,42 @@
+<div id="progress"></div>
+
+<script>
+var chart;
+$(document).ready(function() {
+	chart = new Highcharts.Chart({
+		chart: {
+			renderTo: 'progress'
+		},
+		title: {
+			text: 'Progress'
+		},
+		tooltip: {
+			formatter: function() {
+				return '<b>'+ this.point.name +'</b>: '+ this.y;
+			}
+		},
+		plotOptions: {
+			pie: {
+				cursor: 'pointer',
+				dataLabels: {
+					enabled: true,
+					formatter: function() {
+					  valueDecimals: 0
+						return '<b>'+ this.point.name +'</b>: '+ this.y;
+					}
+				}
+			}
+		},
+		series: [{
+			type: 'pie',
+			data: [
+			  ['To Do',     <%= @to_do.count %>],		
+				['In Progress',      <%= @in_progress.count %>],
+				['In QA',  <%= @in_qa.count %>],
+				['Done',  <%= @done.count %>]
+				
+			]
+		}]
+	});
+});
+</script>

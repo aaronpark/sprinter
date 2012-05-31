@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  summary: MyString
+  description: MyText
+  assignee: MyString
+  points: 1
+  status: MyString
+  key: MyString
+  sprint_id: 1
+  type: 
+
+two:
+  summary: MyString
+  description: MyText
+  assignee: MyString
+  points: 1
+  status: MyString
+  key: MyString
+  sprint_id: 1
+  type: 
