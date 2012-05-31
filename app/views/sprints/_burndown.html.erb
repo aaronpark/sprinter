@@ -1,0 +1,55 @@
+<div id="burndown"></div>
+<script>
+  $(function(){
+    var chart;
+    chart = new Highcharts.Chart({
+      chart: {
+      			renderTo: 'burndown',
+      			type: 'spline'
+      		},
+      		title: {
+      			text: 'Sprint Burndown'
+      		},
+      		subtitle: {
+      			text: '<%= @sprint['name']%>'
+      		},
+      		xAxis: {
+      			categories: <%= raw @days %>
+      		},
+      		yAxis: {
+      		  min: 0, 
+      			title: {
+      				text: 'Points'
+      			},
+      			plotLines: [{
+      				value: 0,
+      				width: 1,
+      				color: '#808080'
+      			}]
+      		},
+      		series: [{
+          	  name: 'Actual',
+          	  marker: { symbol: 'circle' },
+          	  dataLabels: { enabled: true },
+          	  data: <%= @points_remaining %>
+          	},{
+          	  name: 'Target',
+          	  marker: { enabled: false },
+          	  color: '#559955',
+          	  data: <%= @target_points %>
+          	},{
+          	  name: 'High',
+          	  marker: { enabled: false },
+          	  color: '#559955',
+          	  dashStyle: 'Dash',
+          	  data: <%= @target_high_points %>
+          	},{
+          	  name: 'Low',
+          	  marker: { enabled: false },
+          	  color: '#559955',
+          	  dashStyle: 'Dash',
+          	  data: <%= @target_low_points %>
+          	}]
+    });
+  });
+</script>
