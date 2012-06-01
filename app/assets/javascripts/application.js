@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+$(function(){
+	$('#nav_update').hover(
+		function(){
+			$('#nav_update .icon-time').addClass('icon-refresh')
+		},
+		function(){
+			$('#nav_update .icon-time').removeClass('icon-refresh')
+		});
+});

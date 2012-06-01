@@ -1,5 +1,4 @@
 <div class="btn-group pull-right">
-  <a class="btn" href="sprints/reload_sprint_list"><i class="icon-refresh"></i> Update</a>
   <%= link_to raw("<i class='icon-plus'></i> New"), new_sprint_path, :class => 'btn' %>
 </div>
 
@@ -10,11 +9,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:xid) %></th>
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:xid) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -22,12 +20,11 @@
   <tbody>
     <% @sprints.each do |sprint| %>
       <tr>
-        <td><%= link_to sprint.id, sprint_path(sprint) %></td>
+        <td><%= link_to sprint.xid, sprint_path(sprint) %></td>
         <td><%= sprint.name %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
-        <td><%= sprint.xid %></td>
-        <td><%=l sprint.created_at %></td>
+        <td><%=l sprint.created_at.to_date %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_sprint_path(sprint), :class => 'btn btn-mini' %>

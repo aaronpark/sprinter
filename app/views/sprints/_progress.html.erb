@@ -10,6 +10,9 @@ $(document).ready(function() {
 		title: {
 			text: 'Progress'
 		},
+		subtitle: {
+			text: '(story points)'
+		},
 		tooltip: {
 			formatter: function() {
 				return '<b>'+ this.point.name +'</b>: '+ this.y;
@@ -30,11 +33,10 @@ $(document).ready(function() {
 		series: [{
 			type: 'pie',
 			data: [
-			  ['To Do',     <%= @to_do.count %>],		
-				['In Progress',      <%= @in_progress.count %>],
-				['In QA',  <%= @in_qa.count %>],
-				['Done',  <%= @done.count %>]
-				
+			  ['In Progress', <%= @in_progress.sum('points') %>],
+			  ['To Do', <%= @to_do.sum('points') %>],		
+				['Done', <%= @done.sum('points') %>],
+				['In QA', <%= @in_qa.sum('points') %>]
 			]
 		}]
 	});

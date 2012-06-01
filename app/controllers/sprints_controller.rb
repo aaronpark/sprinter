@@ -2,6 +2,8 @@ class SprintsController < ApplicationController
   # GET /sprints
   # GET /sprints.json
   def index
+    Sprint.first.reload_sprint_list
+    
     @sprints = Sprint.all(:order => "end_date desc, xid desc")
 
     respond_to do |format|
