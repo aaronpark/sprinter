@@ -152,9 +152,13 @@ class SprintsController < ApplicationController
     end
   end
   
-  def reload
-    Sprint.first.reload
+  def reload_sprint_list
+    Sprint.first.reload_sprint_list
     redirect_to sprints_path, notice: "Sprints reloaded."
+  end
+  def reload_sprint
+    Sprint.first.reload_sprint(params[:id])
+    redirect_to sprint_path, notice: "Sprint reloaded."
   end
   
 end

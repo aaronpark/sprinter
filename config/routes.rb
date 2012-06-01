@@ -1,7 +1,8 @@
 Sprinter::Application.routes.draw do
 
 
-  match 'sprints/reload' => 'sprints#reload'
+  match 'sprints/reload_sprint_list' => 'sprints#reload_sprint_list'
+  match 'sprints/:id/reload_sprint' => 'sprints#reload_sprint'
 
   resources :sprints do
     resources :cards
