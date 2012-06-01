@@ -36,7 +36,7 @@ class Sprint < ActiveRecord::Base
       @card.card_type = sprint_card['fields']['issuetype']['name']
       @card.points = sprint_card['fields']['customfield_10013']
       @card.status = sprint_card['fields']['status']['name']
-      @card.save! 
+      @card.save!
     end
   end
 end

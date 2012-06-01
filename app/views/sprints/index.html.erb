@@ -1,4 +1,7 @@
-<a class="btn pull-right" href="sprints/reload_sprint_list"><i class="icon-refresh"></i> Reload</a>
+<div class="btn-group pull-right">
+  <a class="btn" href="sprints/reload_sprint_list"><i class="icon-refresh"></i> Update</a>
+  <%= link_to raw("<i class='icon-plus'></i> New"), new_sprint_path, :class => 'btn' %>
+</div>
 
 <%- model_class = Sprint.new.class -%>
 <div class="page-header">
@@ -39,6 +42,3 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_sprint_path,
-            :class => 'btn btn-primary' %>

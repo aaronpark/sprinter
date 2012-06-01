@@ -21,7 +21,7 @@
     </div>
   </div>
   <div class="span4">
-    <a class="btn pull-right" href="<%= @sprint.id %>/reload_sprint"><i class="icon-refresh"></i> Reload</a>
+    <a class="btn pull-right" href="<%= sprint_path(@sprint) %>"><i class="icon-refresh"></i> Update</a>
     
     <h2>Today</h2>
     <%= render 'card_list', :card_date => Time.now.to_date %>

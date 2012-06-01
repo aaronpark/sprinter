@@ -10,16 +10,22 @@
 
   <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
-      <div class="container">
+      <div class="container-fluid">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
         <a class="brand" href="/sprints">Sprinter</a>
+        
+        <div class="nav-collapse pull-right">
+          <ul class="nav">
+            <li><a href="">Last Updated: <%= Time.now.strftime('%b-%d-%Y %l:%M %p') %></a></li>
+          </ul>
+        </div>
         <div class="nav-collapse">
           <ul class="nav">
-            <li><a href="/sprints">Sprints</a></li>
+            <li class="active"><a href="/sprints">Sprints</a></li>
           </ul>
         </div>
       </div>

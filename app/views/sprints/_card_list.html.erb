@@ -1,5 +1,7 @@
+<% card_count = 0 %>
 <% @cards.each do |card| %>
-  <% if card.card_updated.to_date == card_date %>
+  <% if card.card_updated.in_time_zone("Pacific Time (US & Canada)").to_date == card_date %>
+    <% card_count = card_count + 1 %>
     <% if card.card_type == 'Bug' %>
       <% alertclass = 'alert-error' %>
       <% badgeclass = 'badge-important' %>
@@ -10,16 +12,21 @@
       <% alertclass = 'alert-info' %>
       <% badgeclass = 'badge-info' %>
     <% end %>
-    <div class="alert <%= alertclass %>">
-      <span class="badge <%= badgeclass %>"><%= card.key %></span>
-      <span class="badge <%= badgeclass %>"><%= card.status %></span>
-      <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
-      <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %P') %></span>
-      <% if card.points %>
-        <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
-      <% end %>
-      <br>
-      <h4><%= card.summary %></h4>
-    </div>
+    
+      <div class="alert <%= alertclass %>">
+        <a href="http://jira.wantsa.com:38881/browse/<%= card.key %>" target="_blank" class="badge <%= badgeclass %>"><%= card.key %></a>
+        <span class="badge <%= badgeclass %>"><%= card.status %></span>
+        <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
+        <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
+        <% if card.points %>
+          <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
+        <% end %>
+        <br>
+        <h4><%= card.summary %></h4>
+      </div>
+    
   <% end %>
+<% end %>
+<% if card_count == 0 %>
+  <div class="alert">No Cards to Display for <%= card_date %></div>
 <% end %>
