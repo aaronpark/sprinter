@@ -30,9 +30,9 @@ $(function(){
 		$('#nav_update .icon-time').addClass('icon-refresh')
 		window.location.reload();
 	};
-	var interval = 300
-	var timeleft = interval
 	
+	var interval = 15
+	var timeleft = interval
 	update_countdown = function(){
 		if(timeleft >= 0){
 			minutes = Math.floor(timeleft/60);
@@ -43,12 +43,13 @@ $(function(){
 			$('#countdown').html(minutes + ':' + seconds)
 			setTimeout('update_countdown()','1000');
 		}
+		if (timeleft == 0) {
+			$('#nav_update').addClass('badge-info')
+			reload_page();
+		}
 		timeleft = timeleft - 1
 	};
 	
 	update_countdown();
-	setTimeout('reload_page()',interval*1000);
-	
-	
 		
 });
