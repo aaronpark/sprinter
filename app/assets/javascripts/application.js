@@ -31,7 +31,7 @@ $(function(){
 		window.location.reload();
 	};
 	
-	var interval = 15
+	var interval = 60
 	var timeleft = interval
 	update_countdown = function(){
 		if(timeleft >= 0){
