@@ -3,6 +3,16 @@ class Sprint < ActiveRecord::Base
   has_many :cards
   attr_accessible :end_date, :name, :start_date, :xid
 
+  def business_days_between(date1, date2)
+    business_days = 0
+    date = date2
+    while date >= date1
+     business_days = business_days + 1 unless date.saturday? or date.sunday?
+     date = date - 1.day
+    end
+    business_days
+  end
+
   def reload_sprint_list
     project = HTTParty.get("http://jira.wantsa.com:38881/rest/api/2/project/WP",{:basic_auth => auth})
     

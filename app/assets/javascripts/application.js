@@ -50,6 +50,8 @@ $(function(){
 		timeleft = timeleft - 1
 	};
 	
-	update_countdown();
+	if ($('#countdown')){
+		update_countdown();		
+	}
 		
 });

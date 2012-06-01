@@ -13,7 +13,8 @@
       <th><%= model_class.human_attribute_name(:name) %></th>
       <th><%= model_class.human_attribute_name(:start_date) %></th>
       <th><%= model_class.human_attribute_name(:end_date) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th>Work Days</th>
+      <th>Velocity</th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
@@ -24,7 +25,8 @@
         <td><%= sprint.name %></td>
         <td><%= sprint.start_date %></td>
         <td><%= sprint.end_date %></td>
-        <td><%=l sprint.created_at.to_date %></td>
+        <td><%= sprint.business_days_between(sprint.start_date, sprint.end_date) if sprint.start_date && sprint.end_date %></td>
+        <td><%= sprint.cards.sum('points') %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_sprint_path(sprint), :class => 'btn btn-mini' %>
