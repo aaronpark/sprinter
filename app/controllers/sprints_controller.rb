@@ -13,6 +13,8 @@ class SprintsController < ApplicationController
   # GET /sprints/1
   # GET /sprints/1.json
   def show
+    Sprint.first.reload_sprint(params[:id])
+    
     @sprint = Sprint.find(params[:id])
     @cards = Card.where("sprint_id = #{@sprint.id}").order("card_updated desc")
     
