@@ -38,9 +38,7 @@ $(function(){
 			minutes = Math.floor(timeleft/60);
 			seconds = timeleft % 60;
 			if (seconds < 10) {
-				seconds = '0'+seconds
-				$('#nav_update').addClass('badge-warning')
-				$('#nav_update').removeClass('badge-success')
+				seconds = '0' + seconds
 			}
 			$('#countdown').html(minutes + ':' + seconds)
 			setTimeout('update_countdown()','1000');
