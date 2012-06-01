@@ -21,7 +21,7 @@
         
         <div class="nav-collapse ">
           <ul class="nav pull-right">
-            <li><a href="">Last Updated: <%= Time.now.strftime('%b-%d-%Y %l:%M %p') %></a></li>
+            <li><a href="">Last Updated: <%= Time.now.strftime('%B %w %Y %l:%M %p') %></a></li>
             <% if @sprint %>
               <li><a href=""><span id="nav_update" class="badge badge-success"><i class="icon-time"></i> <span id="countdown"></span></span></a></li>
             <% end %>

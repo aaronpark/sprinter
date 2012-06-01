@@ -8,6 +8,9 @@ Sprinter::Application.routes.draw do
     resources :cards
   end
   
+  root :to => 'sprints#index'
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
