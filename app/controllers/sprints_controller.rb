@@ -5,7 +5,7 @@ class SprintsController < ApplicationController
     Sprint.first.reload_sprint_list
     
     @sprints = Sprint.all(:order => "end_date desc, xid desc")
-
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sprints }

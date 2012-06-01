@@ -49,4 +49,14 @@ class Sprint < ActiveRecord::Base
       @card.save!
     end
   end
+  
+  def velocity
+    self.cards.sum('points')
+  end
+  
+  
+  def type_count(type)
+    self.cards.where("card_type = '#{type}'").count
+  end
+  
 end
