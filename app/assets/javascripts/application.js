@@ -22,5 +22,35 @@ $(function(){
 		},
 		function(){
 			$('#nav_update .icon-time').removeClass('icon-refresh')
-		});
+		}
+	);
+	
+	
+	reload_page = function(){
+		$('#nav_update .icon-time').addClass('icon-refresh')
+		window.location.reload();
+	};
+	var interval = 300
+	var timeleft = interval
+	
+	update_countdown = function(){
+		if(timeleft >= 0){
+			minutes = Math.floor(timeleft/60);
+			seconds = timeleft % 60;
+			if (seconds < 10) {
+				seconds = '0'+seconds
+				$('#nav_update').addClass('badge-warning')
+				$('#nav_update').removeClass('badge-success')
+			}
+			$('#countdown').html(minutes + ':' + seconds)
+			setTimeout('update_countdown()','1000');
+		}
+		timeleft = timeleft - 1
+	};
+	
+	update_countdown();
+	setTimeout('reload_page()',interval*1000);
+	
+	
+		
 });

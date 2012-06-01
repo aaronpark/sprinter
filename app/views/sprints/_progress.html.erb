@@ -5,7 +5,8 @@ var chart;
 $(document).ready(function() {
 	chart = new Highcharts.Chart({
 		chart: {
-			renderTo: 'progress'
+			renderTo: 'progress',
+			type: 'column'
 		},
 		title: {
 			text: 'Progress'
@@ -13,32 +14,27 @@ $(document).ready(function() {
 		subtitle: {
 			text: '(story points)'
 		},
-		tooltip: {
-			formatter: function() {
-				return '<b>'+ this.point.name +'</b>: '+ this.y;
-			}
-		},
-		plotOptions: {
-			pie: {
-				cursor: 'pointer',
-				dataLabels: {
-					enabled: true,
-					formatter: function() {
-					  valueDecimals: 0
-						return '<b>'+ this.point.name +'</b>: '+ this.y;
-					}
-				}
-			}
-		},
+		legend: {
+      enabled: false
+    },
+    xAxis: {
+      categories: ['Backlog','In Progress','In QA','Done']
+    },
+    yAxis: {
+      title: {
+        text: ''
+      }
+    },			
 		series: [{
-			type: 'pie',
+		  name: 'Points',
 			data: [
+		    ['To Do', <%= @to_do.sum('points') %>],		
 			  ['In Progress', <%= @in_progress.sum('points') %>],
-			  ['To Do', <%= @to_do.sum('points') %>],		
-				['Done', <%= @done.sum('points') %>],
-				['In QA', <%= @in_qa.sum('points') %>]
+				['In QA', <%= @in_qa.sum('points') %>],      
+				['Done', <%= @done.sum('points') %>]
 			]
 		}]
+		
 	});
 });
 </script>
