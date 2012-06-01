@@ -13,16 +13,17 @@
       <% badgeclass = 'badge-info' %>
     <% end %>
     
-      <div class="alert <%= alertclass %>">
-        <a href="http://jira.wantsa.com:38881/browse/<%= card.key %>" target="_blank" class="badge <%= badgeclass %>"><%= card.key %></a>
-        <span class="badge <%= badgeclass %>"><%= card.status %></span>
-        <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
-        <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
-        <% if card.points %>
-          <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
-        <% end %>
-        <br>
-        <h4><%= card.summary %></h4>
+      <div class="well <%= alertclass %>" style="padding:10px;">
+        <div class="pull-right">
+          <% if card.points %>
+            <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
+          <% end %>
+          <span class="badge <%= badgeclass %>"><%= card.status %></span>
+          <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
+          <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
+        </div>
+        <h2><%= card.key %></h2>
+        <h3><%= card.summary %></h3>
       </div>
     
   <% end %>
