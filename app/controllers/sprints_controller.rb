@@ -2,7 +2,7 @@ class SprintsController < ApplicationController
   # GET /sprints
   # GET /sprints.json
   def index
-    Sprint.first.reload_sprint_list
+    reload_sprint_list
     
     @sprints = Sprint.all(:order => "end_date desc, xid desc")
     
@@ -24,7 +24,7 @@ class SprintsController < ApplicationController
   # GET /sprints/1
   # GET /sprints/1.json
   def show
-    Sprint.first.reload_sprint(params[:id])
+    reload_sprint(params[:id])
     
     @sprint = Sprint.find(params[:id])
     @cards = @sprint.cards
@@ -33,12 +33,12 @@ class SprintsController < ApplicationController
     
     @features = @cards.where("card_type = 'Story'")
     @bugs = @cards.where("card_type = 'Bug'")
-    @tasks = @cards.where("card_type = 'Task' OR card_type = 'Technical Task'")
+    @tasks = @cards.where("card_type = 'Task'")
     
-    @to_do = @cards.where("status = 'Open'")
-    @in_progress = @cards.where("status = 'In Progress'")
-    @in_qa = @cards.where("status = 'Resolved'")
-    @done = @cards.where("status = 'Closed'")
+    @to_do = @cards.where("status = 'Open'").order("card_updated desc")
+    @in_progress = @cards.where("status = 'In Progress'").order("card_updated desc")
+    @in_qa = @cards.where("status = 'Resolved'").order("card_updated desc")
+    @done = @cards.where("status = 'Closed'").order("card_updated desc")
 
     @done_each_day = []
     @points_remaining = []
@@ -155,15 +155,6 @@ class SprintsController < ApplicationController
       format.html { redirect_to sprints_url }
       format.json { head :no_content }
     end
-  end
-  
-  def reload_sprint_list
-    Sprint.first.reload_sprint_list
-    redirect_to sprints_path, notice: "Sprints reloaded."
-  end
-  def reload_sprint
-    Sprint.first.reload_sprint(params[:id])
-    redirect_to sprint_path, notice: "Sprint reloaded."
   end
   
 end

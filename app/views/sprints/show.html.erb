@@ -12,10 +12,10 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="span3">To Do ( <%= @to_do.count %> Issues <%= @to_do.sum('points') %> Points )</th>
-          <th class="span3">In Progress ( <%= @in_progress.count %> Issues <%= @in_progress.sum('points') %> Points )</th>
-          <th class="span3">In QA ( <%= @in_qa.count %> Issues <%= @in_qa.sum('points') %> Points )</th>
-          <th class="span3">Done ( <%= @done.count %> Issues <%= @done.sum('points') %> Points )</th>
+          <th class="span3">To Do       ( <%= @to_do.count %>       Issues <%= @to_do.sum('points') %>        Points )</th>
+          <th class="span3">In Progress ( <%= @in_progress.count %> Issues <%= @in_progress.sum('points') %>  Points )</th>
+          <th class="span3">In QA       ( <%= @in_qa.count %>       Issues <%= @in_qa.sum('points') %>        Points )</th>
+          <th class="span3">Done        ( <%= @done.count %>        Issues <%= @done.sum('points') %>         Points )</th>
         </tr>
       </thead>
       <tbody>
