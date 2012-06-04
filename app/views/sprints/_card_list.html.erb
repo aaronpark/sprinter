@@ -22,7 +22,19 @@
         <% end %>
         <span class="badge <%= badgeclass %>"><%= card.assignee %> | <%= card.status %> | <%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
       </div>
-      <h2><%= card.key %></h2>
+      
+     <h2>
+       <a
+        href="http://jira.wantsa.com:38881/browse/<%= card.key %>"
+        target="_blank"
+        class="<%= alertclass %>"
+        rel="popover"
+        data-content="<%= raw(card.description).html_safe.gsub("\n", '<br/>') %>"
+        data-original-title="<%= card.key %><span class='pull-right badge <%= badgeclass %>'><%= card.status %></span>">
+          <%= card.key %>
+        </a>
+      </h2>
+
       <h3><%= card.summary %></h3>
     </div>
   <% end %>

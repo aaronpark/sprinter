@@ -1,0 +1,24 @@
+  <% if bucket.count %>
+    <% bucket.each do |card| %>
+      <% if card.card_type == 'Bug' %>
+        <% badgeclass = 'badge-important' %>
+      <% elsif card.card_type == 'Story' %>
+        <% badgeclass = 'badge-success' %>
+      <% else %>
+        <% badgeclass = 'badge-info' %>
+      <% end %>
+      
+      <a
+        href="http://jira.wantsa.com:38881/browse/<%= card.key %>"
+        target="_blank"
+        rel="popover"
+        data-content="<h3><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h3> <br> <%= raw(card.description).html_safe.gsub("\n", '<br/>') %>"
+        data-original-title="<%= card.key %><span class='pull-right badge <%= badgeclass %>'><%= card.assignee %></span>">
+      
+      <span class="badge <%= badgeclass %>"><%= card.key %></span>
+      </a>
+    
+    <% end %>
+  <% else %>
+    No Issues
+  <% end %>

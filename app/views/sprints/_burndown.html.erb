@@ -13,8 +13,21 @@
       		subtitle: {
       			text: 'Burndown'
       		},
+      		tooltip: {
+            formatter: function() {
+          	  return '<b>'+ this.series.name +'</b><br/>'+
+          		this.x +': '+ this.y;
+          	}
+          },
       		xAxis: {
-      			categories: <%= raw @days %>
+      			categories: <%= raw @days %>,
+      			labels: {
+              // rotation: -45,
+      				align: 'center',
+      				style: {
+      					font: 'normal 13px Verdana, sans-serif'
+      				}
+            }
       		},
       		yAxis: {
       		  min: 0, 
