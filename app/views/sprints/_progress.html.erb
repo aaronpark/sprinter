@@ -11,14 +11,11 @@ $(document).ready(function() {
 		title: {
 			text: 'Progress'
 		},
-		subtitle: {
-			text: '(story points)'
-		},
 		legend: {
-      enabled: false
+      enabled: true
     },
     xAxis: {
-      categories: ['Backlog','In Progress','In QA','Done']
+      categories: ['Backlog','WIP','In QA','Done']
     },
     yAxis: {
       title: {
@@ -32,6 +29,15 @@ $(document).ready(function() {
 			  ['In Progress', <%= @in_progress.sum('points') %>],
 				['In QA', <%= @in_qa.sum('points') %>],      
 				['Done', <%= @done.sum('points') %>]
+			]
+		},
+		{
+		  name: 'Issues',
+			data: [
+		    ['To Do', <%= @to_do.count %>],		
+			  ['In Progress', <%= @in_progress.count %>],
+				['In QA', <%= @in_qa.count %>],      
+				['Done', <%= @done.count %>]
 			]
 		}]
 		

@@ -11,14 +11,23 @@ class SprintsController < ApplicationController
       format.json { render json: @sprints }
     end
   end
-
+  
+  # def streamer
+  #   self.response_body = Enumerator.new do |y|
+  #     100000.times do |i|
+  #       y << "This is line #{i}\n"
+  #       self.response.headers['Last-Modified'] = Time.now.to_s
+  #     end
+  #   end
+  # end
+  
   # GET /sprints/1
   # GET /sprints/1.json
   def show
     Sprint.first.reload_sprint(params[:id])
     
     @sprint = Sprint.find(params[:id])
-    @cards = Card.where("sprint_id = #{@sprint.id}").order("card_updated desc")
+    @cards = @sprint.cards
     
     @card_days = @cards.group_by { |t| t.card_updated.beginning_of_day }
     
@@ -31,23 +40,16 @@ class SprintsController < ApplicationController
     @in_qa = @cards.where("status = 'Resolved'")
     @done = @cards.where("status = 'Closed'")
 
-  
     @done_each_day = []
     @points_remaining = []
     @days = []
-    @points = 0
     @target_points = []
     @target_high_points = []
     @target_low_points = [] 
     @days_in_sprint = (@sprint.end_date.to_date - @sprint.start_date.to_date).to_i+1
     @workdays_in_sprint = 0
     @points_this_sprint = @sprint.cards.sum('points')
-
-    @sprint.start_date.upto(@sprint.end_date) do |day|
-      if day.strftime('%A') != 'Saturday' && day.strftime('%A') != 'Sunday'
-        @workdays_in_sprint = @workdays_in_sprint + 1
-      end
-    end 
+    @workdays_in_sprint = work_days_between(@sprint.start_date,@sprint.end_date)
     
     days_so_far = 0
     done_so_far = 0
@@ -88,9 +90,6 @@ class SprintsController < ApplicationController
         
       end
     end
-    
-    
-    
     
     respond_to do |format|
       format.html # show.html.erb
