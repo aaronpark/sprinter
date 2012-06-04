@@ -21,12 +21,9 @@
           <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
         <% end %>
         <span class="badge <%= badgeclass %>"><%= card.assignee %> | <%= card.status %> | <%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
-
       </div>
       <h2><%= card.key %></h2>
       <h3><%= card.summary %></h3>
     </div>
-    
-    
   <% end %>
 <% end %>
