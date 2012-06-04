@@ -21,10 +21,7 @@
     </div>
   </div>
   <div class="span4">    
-    <h2>Today</h2>
-    <%= render 'card_list', :card_date => Time.now.to_date %>
-    <h2>Yesterday</h2>
-    <%= render 'card_list', :card_date => 1.day.ago.to_date %>
+    <%= render 'card_list' %>
   </div>
 </div>
 <meta http-equiv="refresh" content="300">

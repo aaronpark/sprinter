@@ -20,6 +20,8 @@ class SprintsController < ApplicationController
     @sprint = Sprint.find(params[:id])
     @cards = Card.where("sprint_id = #{@sprint.id}").order("card_updated desc")
     
+    @card_days = @cards.group_by { |t| t.card_updated.beginning_of_day }
+    
     @features = @cards.where("card_type = 'Story'")
     @bugs = @cards.where("card_type = 'Bug'")
     @tasks = @cards.where("card_type = 'Task' OR card_type = 'Technical Task'")

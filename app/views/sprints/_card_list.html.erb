@@ -1,7 +1,10 @@
-<% card_count = 0 %>
-<% @cards.each do |card| %>
-  <% if card.card_updated.in_time_zone("Pacific Time (US & Canada)").to_date == card_date %>
-    <% card_count = card_count + 1 %>
+<% if @cards.count == 0 %>
+  <div class="alert">No Cards to Display</div>
+<% end %>
+
+<% @card_days.sort.reverse.each do |day, cards| %>
+  <h2><%= day.strftime('%A, %B %e, %Y') %></h2>
+  <% for card in cards %>    
     <% if card.card_type == 'Bug' %>
       <% alertclass = 'alert-error' %>
       <% badgeclass = 'badge-important' %>
@@ -12,22 +15,18 @@
       <% alertclass = 'alert-info' %>
       <% badgeclass = 'badge-info' %>
     <% end %>
-    
-      <div class="well <%= alertclass %>" style="padding:10px;">
-        <div class="pull-right">
-          <% if card.points %>
-            <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
-          <% end %>
-          <span class="badge <%= badgeclass %>"><%= card.status %></span>
-          <span class="badge <%= badgeclass %>"><%= card.assignee %></span>
-          <span class="badge <%= badgeclass %>"><%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
-        </div>
-        <h2><%= card.key %></h2>
-        <h3><%= card.summary %></h3>
+    <div class="well <%= alertclass %>" style="padding:10px;">
+      <div class="pull-right">
+        <% if card.points %>
+          <span class="badge <%= badgeclass %>"><%= card.points.to_i %></span>
+        <% end %>
+        <span class="badge <%= badgeclass %>"><%= card.assignee %> | <%= card.status %> | <%= card.card_updated.in_time_zone("Pacific Time (US & Canada)").strftime('%l:%M %p') %></span>
+
       </div>
+      <h2><%= card.key %></h2>
+      <h3><%= card.summary %></h3>
+    </div>
+    
     
   <% end %>
-<% end %>
-<% if card_count == 0 %>
-  <div class="alert">No Cards to Display for <%= card_date %></div>
 <% end %>
