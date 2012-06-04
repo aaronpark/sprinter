@@ -11,9 +11,12 @@
     <% elsif card.card_type == 'Story' %>
       <% alertclass = 'alert-success' %>
       <% badgeclass = 'badge-success' %>
-    <% else %>
+    <% elsif card.card_type == 'Task'  %>
       <% alertclass = 'alert-info' %>
       <% badgeclass = 'badge-info' %>
+    <% else %>
+      <% alertclass = '' %>
+      <% badgeclass = '' %>
     <% end %>
     <div class="well <%= alertclass %>" style="padding:10px;">
       <div class="pull-right">

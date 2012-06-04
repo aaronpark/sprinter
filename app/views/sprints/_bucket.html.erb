@@ -4,8 +4,10 @@
         <% badgeclass = 'badge-important' %>
       <% elsif card.card_type == 'Story' %>
         <% badgeclass = 'badge-success' %>
-      <% else %>
+      <% elsif card.card_type == 'Task'  %>
         <% badgeclass = 'badge-info' %>
+      <% else %>
+        <% badgeclass = '' %>
       <% end %>
       
       <a
