@@ -1,35 +1,18 @@
-<% if @cards.count == 0 %>
-  <div class="alert">No Cards to Display</div>
-<% end %>
-
-<% @card_days.sort.reverse.each do |day, cards| %>
-  <h2><%= day.strftime('%A, %B %e, %Y') %></h2>
-  <% for card in cards %>    
-    <% if card.card_type == 'Bug' %>
-      <% alertclass = 'alert-error' %>
-      <% badgeclass = 'label-important' %>
-      <% btnclass = 'btn-danger' %>
-    <% elsif card.card_type == 'Story' %>
-      <% alertclass = 'alert-success' %>
-      <% badgeclass = 'label-success' %>
-      <% btnclass = 'btn-success' %>
-    <% elsif card.card_type == 'Task'  %>
-      <% alertclass = 'alert-info' %>
-      <% badgeclass = 'label-info' %>
-      <% btnclass = 'btn-primary' %>
-    <% else %>
-      <% alertclass = '' %>
-      <% badgeclass = '' %>
-      <% btnclass = '' %>
+<table class="table">
+  <% @card_days.sort.reverse.each do |day, cards| %>
+    <thead>
+      <tr>
+        <td colspan="3"><h3><%= day.strftime('%A, %B %e, %Y') %></h3></td>
+      </tr>
+    </thead>
+    <tbody>
+    <% for card in cards %>
+      <tr>
+        <td style="white-space:nowrap"><%= render 'card_label', :card => card %></td>
+        <td><h4><%= card.summary %></h4></td>
+        <td style="white-space:nowrap"><h4><%= card.assignee %><br><%= card.card_status %></h4></td>
+      </tr>
     <% end %>
-    <div class="well <%= alertclass %>" style="padding:10px;">
-      <h3 class="poppy"  data-content="<%= raw(card.description).html_safe.gsub("\n", '<br/>') %>" data-original-title="<%= card.key %><span class='pull-right badge <%= badgeclass %>'><%= card.status %></span>">
-        <span class="pull-right label <%= badgeclass %>"><% if card.points %><%= card.points.to_i %> | <% end %><%= card.assignee %> | <%= card.status %></span>
-        <%= card.key %> - <%= card.summary %>
-      </h3>
-    </div>
+    </tbody>
   <% end %>
-<% end %>
-<script>
-$('.poppy').popover({placement:'left'});
-</script>
+</table>

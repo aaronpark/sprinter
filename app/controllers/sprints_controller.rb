@@ -1,15 +1,23 @@
 class SprintsController < ApplicationController
+  before_filter :get_sprints
+  
+  before_filter :validate_sprint, :only => :show
+  
+  def get_sprints
+    @sprints = Sprint.all(:order => "name")
+  end
+  
   # GET /sprints
   # GET /sprints.json
   def index
     reload_sprint_list
+    sprint = Card.find(:first, :order => "card_updated DESC").sprint
+    redirect_to sprint_path(sprint)
     
-    @sprints = Sprint.all(:order => "end_date desc, xid desc")
-    
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @sprints }
-    end
+    # respond_to do |format|
+    #   format.html # index.html.erb
+    #   format.json { render json: @sprints }
+    # end
   end
   
   # def streamer
@@ -21,12 +29,21 @@ class SprintsController < ApplicationController
   #   end
   # end
   
+  def validate_sprint
+    sprint = Sprint.find(params[:id])
+    if sprint.start_date.nil? || sprint.end_date.nil? || sprint.start_date == sprint.end_date
+      flash[:alert] = 'Sprint requires valid start and end dates'
+      redirect_to edit_sprint_path(sprint)
+    end
+  end
+  
   # GET /sprints/1
   # GET /sprints/1.json
   def show
     reload_sprint(params[:id])
-    
+        
     @sprint = Sprint.find(params[:id])
+    
     @cards = @sprint.cards
     
     @card_days = @cards.group_by { |t| t.card_updated.beginning_of_day }

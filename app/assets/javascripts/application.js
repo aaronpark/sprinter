@@ -25,7 +25,6 @@ $(function(){
 		}
 	);
 	
-	
 	reload_page = function(){
 		$('#nav_update .icon-time').addClass('icon-refresh')
 		window.location.reload();
