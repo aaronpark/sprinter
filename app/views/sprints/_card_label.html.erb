@@ -1,0 +1,18 @@
+<% if card.card_type == 'Bug' %>
+  <% badgeclass = 'label-important' %>
+<% elsif card.card_type == 'Story' %>
+  <% badgeclass = 'label-success' %>
+<% elsif card.card_type == 'Task'  %>
+  <% badgeclass = 'label-info' %>
+<% else %>
+  <% badgeclass = '' %>
+<% end %>
+
+<a
+  href="http://jira.wantsa.com:38881/browse/<%= card.key %>"
+  target="_blank"
+  rel="popover"
+  data-content="<h3><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h3> <br> <%= raw(card.description).html_safe.gsub("\n", '<br/>') %>"
+  data-original-title="<%= card.key %><span class='pull-right badge <%= badgeclass %>'><%= card.assignee %></span>">
+<span class="label <%= badgeclass %>"><%= card.key %></span>
+</a>

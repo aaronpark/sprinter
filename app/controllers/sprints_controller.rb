@@ -50,6 +50,8 @@ class SprintsController < ApplicationController
     @workdays_in_sprint = 0
     @points_this_sprint = @sprint.cards.sum('points')
     @workdays_in_sprint = work_days_between(@sprint.start_date,@sprint.end_date)
+    @developers = @cards.where("status <> 'Closed' OR (card_updated > '#{1.day.ago}')").order("assignee, card_updated desc").group_by { |t| t.assignee }
+
     
     days_so_far = 0
     done_so_far = 0
@@ -77,7 +79,7 @@ class SprintsController < ApplicationController
           done_so_far = done_so_far + done_this_day
           @points_remaining << @points_this_sprint - done_so_far      
           if @points_this_sprint - done_so_far < target_low_point
-            @progress_status = 'progress-warning'
+            @progress_status = 'progress-success'
           elsif @points_this_sprint - done_so_far > target_low_point && @points_this_sprint - done_so_far < target_high_point
             @progress_status = 'progress-success'
           elsif @points_this_sprint - done_so_far > target_high_point
