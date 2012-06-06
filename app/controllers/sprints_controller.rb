@@ -44,7 +44,7 @@ class SprintsController < ApplicationController
         
     @sprint = Sprint.find(params[:id])
     
-    @cards = @sprint.cards
+    @cards = @sprint.cards.order("card_updated desc")
     
     @card_days = @cards.group_by { |t| t.card_updated.beginning_of_day }
     
@@ -85,7 +85,7 @@ class SprintsController < ApplicationController
         @target_low_points << target_low_point
         @days << day.strftime('%D').to_s
 
-        if day.to_date <= Time.now.to_date
+        if day.to_date <= Time.now.in_time_zone.to_date
           days_so_far = days_so_far + 1
           done_this_day = 0
           @sprint.cards.each do |card|
