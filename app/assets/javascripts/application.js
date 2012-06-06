@@ -27,6 +27,14 @@ $(function(){
 	
 	reload_page = function(){
 		$('#nav_update .icon-time').addClass('icon-refresh')
+		// $.ajax({
+		//   url: "http://localhost:3000/sprints/15",
+		//   cache: false
+		// }).done(function( html ) {
+		//   $("html").append(html);
+		// 	 update_countdown();
+		// });
+		// 
 		window.location.reload();
 	};
 	

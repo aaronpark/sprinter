@@ -95,14 +95,10 @@ class SprintsController < ApplicationController
           end
           done_so_far = done_so_far + done_this_day
           @points_remaining << @points_this_sprint - done_so_far      
-          if @points_this_sprint - done_so_far < target_low_point
-            @progress_status = 'progress-success'
-          elsif @points_this_sprint - done_so_far > target_low_point && @points_this_sprint - done_so_far < target_high_point
-            @progress_status = 'progress-success'
-          elsif @points_this_sprint - done_so_far > target_high_point
+          if @points_this_sprint - done_so_far > target_high_point
             @progress_status = 'progress-danger'
           else
-            @progress_status = 'progress-info'
+            @progress_status = 'progress-success'
           end  
           @sprint_progress = days_so_far/@workdays_in_sprint.to_f*100
         end 
