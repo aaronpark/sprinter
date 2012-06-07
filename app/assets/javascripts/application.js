@@ -25,22 +25,28 @@ $(function(){
 		}
 	);
 	
+	var interval = 60
+	
 	reload_page = function(){
-		$('#nav_update .icon-time').addClass('icon-refresh')
-		// $.ajax({
-		//   url: "http://localhost:3000/sprints/15",
-		//   cache: false
-		// }).done(function( html ) {
-		//   $("html").append(html);
-		// 	 update_countdown();
-		// });
-		// 
-		window.location.reload();
+		$('#nav_update .icon-time').removeClass('icon-exclamation-sign')
+		$('#nav_update .icon-time').addClass('icon-refresh')	
+		$.ajax({
+		  url: 'http://localhost:3000',
+		  success: function(data) {
+				window.location.reload();
+		  },
+			error: function(data) {
+				$('#nav_update').removeClass('badge-info')
+				$('#nav_update').removeClass('badge-success')
+				$('#nav_update').addClass('badge-warning')
+		    $('#nav_update .icon-time').removeClass('icon-refresh')
+				$('#nav_update .icon-time').addClass('icon-exclamation-sign')
+				update_countdown(10);	
+		  }
+		});	
 	};
 	
-	var interval = 60
-	var timeleft = interval
-	update_countdown = function(){
+	update_countdown = function(timeleft){
 		if(timeleft >= 0){
 			minutes = Math.floor(timeleft/60);
 			seconds = timeleft % 60;
@@ -48,7 +54,7 @@ $(function(){
 				seconds = '0' + seconds
 			}
 			$('#countdown').html(minutes + ':' + seconds)
-			setTimeout('update_countdown()','1000');
+			setTimeout('update_countdown('+(timeleft - 1)+')','1000');
 		}
 		if (timeleft == 0) {
 			$('#nav_update').addClass('badge-info')
@@ -58,7 +64,7 @@ $(function(){
 	};
 	
 	if ($('#countdown')){
-		update_countdown();		
+		update_countdown(interval);		
 	}
 		
 });
