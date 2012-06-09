@@ -4,8 +4,8 @@ development:
  host: localhost
  database: sprinter_development
  pool: 5
- username: postgres
- password: postgres
+ username: aaron
+ password: 
 
 test:
  adapter: postgresql
