@@ -13,6 +13,6 @@
   target="_blank"
   rel="popover"
   data-content="<h4><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h4> <br> <%= truncate(raw(card.description).html_safe.gsub("\n", '<br/>'), :length => 200) %>"
-  data-original-title="<%= card.key %><span class='pull-right label <%= badgeclass %>'><%= card.assignee %></span>">
+  data-original-title="<%= card.key %><% if card.card_type == 'Story' %> <span class='pull-right label <%= badgeclass %>'><%= pluralize(card.points,'point') %></span><% end %> ">
 <span class="label <%= badgeclass %>"><%= card.key %></span>
 </a>
