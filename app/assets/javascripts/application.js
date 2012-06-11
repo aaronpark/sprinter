@@ -31,7 +31,7 @@ $(function(){
 		$('#nav_update .icon-time').removeClass('icon-exclamation-sign')
 		$('#nav_update .icon-time').addClass('icon-refresh')	
 		$.ajax({
-		  url: 'http://localhost:3000',
+		  url: '/alive',
 		  success: function(data) {
 				window.location.reload();
 		  },

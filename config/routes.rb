@@ -1,6 +1,7 @@
 Sprinter::Application.routes.draw do
 
 
+  match 'alive' => 'application#alive'
   match 'sprints/reload_sprint_list' => 'sprints#reload_sprint_list'
   match 'sprints/:id/reload_sprint' => 'sprints#reload_sprint'
 
