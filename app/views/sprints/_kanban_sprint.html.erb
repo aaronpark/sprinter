@@ -1,24 +1,24 @@
 <table class="table">
   <thead>
     <tr>
-      <th class="span3">To Do</th>
-      <th class="span3">In Progress</th>
-      <th class="span3">In QA</th>
-      <th class="span3">Done</th>
+      <th>To Do</th>
+      <th>In Progress</th>
+      <th>In QA</th>
+      <th>Done</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td class="span3"><%= render 'bucket', :bucket => @to_do, :state => 'To Do' %></td>
-      <td class="span3"><%= render 'bucket', :bucket => @in_progress, :state => 'In Progress' %></td>
-      <td class="span3"><%= render 'bucket', :bucket => @in_qa, :state => 'In QA' %></td>
-      <td class="span3"><%= render 'bucket', :bucket => @done, :state => 'Done' %></td>
+      <td style="width:25%"><%= render 'bucket', :bucket => @to_do, :state => 'To Do' %></td>
+      <td style="width:25%"><%= render 'bucket', :bucket => @in_progress, :state => 'In Progress' %></td>
+      <td style="width:25%"><%= render 'bucket', :bucket => @in_qa, :state => 'In QA' %></td>
+      <td style="width:25%"><%= render 'bucket', :bucket => @done, :state => 'Done' %></td>
     </tr>
 
     <tr>
-      <td class="span3"><%= @to_do.count %> Issues | <%= @to_do.sum('points') %> Points</td>
-      <td class="span3"><%= @in_progress.count %> Issues | <%= @in_progress.sum('points') %> Points</td>
-      <td class="span3"><%= @in_qa.count %> Issues | <%= @in_qa.sum('points') %> Points</td>
-      <td class="span3"><%= @done.count %> Issues | <%= @done.sum('points') %> Points</td>
+      <td><h6><%= @to_do.count %> Issues | <%= @to_do.sum('points') %> Points</h6></td>
+      <td><h6><%= @in_progress.count %> Issues | <%= @in_progress.sum('points') %> Points</h6></td>
+      <td><h6><%= @in_qa.count %> Issues | <%= @in_qa.sum('points') %> Points</h6></td>
+      <td><h6><%= @done.count %> Issues | <%= @done.sum('points') %> Points</h6></td>
     </tr>
 </table>
