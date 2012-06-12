@@ -4,8 +4,6 @@
       <div class="bar " style="width: <%= @sprint_progress %>%"><%= @sprint_progress.to_i %>%</div>
     </div>
 
-    <%= render 'burndown' %>
-
     <div class="tabbable"> <!-- Only required for left/right tabs -->
       <ul class="nav nav-tabs">
         <li class="active"><a href="#tab1" data-toggle="tab">Team</a></li>
@@ -20,6 +18,8 @@
         </div>
       </div>
     </div>
+
+    <%= render 'burndown' %>
 
     <div class="row-fluid">
       <div class="span6">
