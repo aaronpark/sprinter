@@ -7,12 +7,18 @@
       			renderTo: 'burndown',
       			type: 'line'
       		},
+          credits: {
+            enabled: false
+          },
       		title: {
-      			text: '<%= @sprint['name']%>'
+      			text: '<%= @sprint['name']%>',
+            floating: true,
+            align: 'right',
+            y: 30
       		},
-      		subtitle: {
-      			text: 'Burndown'
-      		},
+          legend: {
+            enabled: false
+          },
       		tooltip: {
             formatter: function() {
           	  return '<b>'+ this.series.name +'</b><br/>'+
@@ -32,7 +38,7 @@
       		yAxis: {
       		  min: 0, 
       			title: {
-      				text: 'Points'
+      				text: ''
       			},
       			plotLines: [{
       				value: 0,

@@ -83,7 +83,7 @@ class SprintsController < ApplicationController
         @target_points << target_point
         @target_high_points << target_high_point
         @target_low_points << target_low_point
-        @days << day.strftime('%D').to_s
+        @days << day.strftime('%a').to_s
 
         if day.to_date <= Time.now.in_time_zone.to_date
           days_so_far = days_so_far + 1
