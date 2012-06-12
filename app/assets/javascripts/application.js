@@ -25,7 +25,7 @@ $(function(){
 		}
 	);
 	
-	var interval = 300
+	var interval = 900
 	
 	reload_page = function(){
 		$('#nav_update .icon-time').removeClass('icon-exclamation-sign')

@@ -1,8 +1,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th></th>
-      <th>To Do</th>
+      <th>Team Member</th>
       <th>In Progress</th>
       <th>In QA</th>
       <th>Done</th>
@@ -11,11 +10,10 @@
   <tbody>
     <% @developers.each do |developer,cards| %>
       <tr>
-        <td style="width:20%"><%= developer %></td>
-        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Open' %><% end %></td>
-        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'In Progress' %><% end %></td>
-        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Resolved' %><% end %></td>
-        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Closed' %><% end %></td>
+        <td><%= developer %></td>
+        <td><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'In Progress' %><% end %></td>
+        <td><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Resolved' %><% end %></td>
+        <td><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Closed' %><% end %></td>
       </tr>
     <% end %>
   </tbody>

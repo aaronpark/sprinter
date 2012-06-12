@@ -16,9 +16,9 @@
     </tr>
 
     <tr>
-      <td><h6><%= @to_do.count %> Issues | <%= @to_do.sum('points') %> Points</h6></td>
-      <td><h6><%= @in_progress.count %> Issues | <%= @in_progress.sum('points') %> Points</h6></td>
-      <td><h6><%= @in_qa.count %> Issues | <%= @in_qa.sum('points') %> Points</h6></td>
-      <td><h6><%= @done.count %> Issues | <%= @done.sum('points') %> Points</h6></td>
+      <td><h6><%= pluralize(@to_do.sum('points'), 'Point') %></h6></td>
+      <td><h6><%= pluralize(@in_progress.sum('points'), 'Point') %></h6></td>
+      <td><h6><%= pluralize(@in_qa.sum('points'), 'Point') %></h6></td>
+      <td><h6><%= pluralize(@done.sum('points'), 'Point') %></h6></td>
     </tr>
 </table>
