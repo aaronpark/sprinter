@@ -27,6 +27,7 @@ gem 'httparty'
 gem 'simple_form'
 
 gem 'rails-footnotes', '>= 3.7.5.rc4', :group => :development
+gem 'version'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -135,6 +135,7 @@ GEM
     uglifier (1.2.4)
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
+    version (1.0.0)
 
 PLATFORMS
   ruby
@@ -151,3 +152,4 @@ DEPENDENCIES
   simple_form
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
+  version
