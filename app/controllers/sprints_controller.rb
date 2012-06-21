@@ -11,7 +11,8 @@ class SprintsController < ApplicationController
   # GET /sprints.json
   def index
     reload_sprint_list
-    sprint = Card.find(:first, :order => "card_updated DESC").sprint
+    sprint = Sprint.find(:first, :order => "updated_at DESC")
+    #sprint = Card.find(:first, :order => "card_updated DESC").sprint
     redirect_to sprint_path(sprint)
     
     # respond_to do |format|

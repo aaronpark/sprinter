@@ -38,7 +38,7 @@ module ApplicationHelper
   end
   
   def reload_sprint_list
-    project = HTTParty.get("http://jira.wantsa.com:38881/rest/api/2/project/WP",{:basic_auth => auth})
+    project = HTTParty.get("http://jira.wantsa.com:38881/rest/api/2/project/PW",{:basic_auth => auth})
     
     project['versions'].each do |sprint|
       @sprint = Sprint.find_by_xid(sprint['id'])
