@@ -55,6 +55,7 @@ class SprintsController < ApplicationController
     
     @to_do = @cards.where("status = 'Open'").order("card_updated desc")
     @in_progress = @cards.where("status = 'In Progress'").order("card_updated desc")
+    @in_review = @cards.where("status = 'In Review'").order("card_updated desc")
     @in_qa = @cards.where("status = 'Resolved'").order("card_updated desc")
     @done = @cards.where("status = 'Closed'").order("card_updated desc")
 

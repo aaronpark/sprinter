@@ -27,6 +27,7 @@ $(document).ready(function() {
 			data: [
 		    ['To Do', <%= @to_do.sum('points') %>],		
 			  ['In Progress', <%= @in_progress.sum('points') %>],
+			  ['In Review', <%= @in_review.sum('points') %>],
 				['In QA', <%= @in_qa.sum('points') %>],      
 				['Done', <%= @done.sum('points') %>]
 			]
@@ -36,6 +37,7 @@ $(document).ready(function() {
 			data: [
 		    ['To Do', <%= @to_do.count %>],		
 			  ['In Progress', <%= @in_progress.count %>],
+			  ['In Review', <%= @in_review.count %>],
 				['In QA', <%= @in_qa.count %>],      
 				['Done', <%= @done.count %>]
 			]

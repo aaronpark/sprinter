@@ -3,21 +3,24 @@
     <tr>
       <th>To Do</th>
       <th>In Progress</th>
+      <th>In Review</th>
       <th>In QA</th>
       <th>Done</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="width:25%"><%= render 'bucket', :bucket => @to_do, :state => 'To Do' %></td>
-      <td style="width:25%"><%= render 'bucket', :bucket => @in_progress, :state => 'In Progress' %></td>
-      <td style="width:25%"><%= render 'bucket', :bucket => @in_qa, :state => 'In QA' %></td>
-      <td style="width:25%"><%= render 'bucket', :bucket => @done, :state => 'Done' %></td>
+      <td style="width:20%"><% @to_do.each do |card| %><%= render 'card_label', :card => card %><% end %></td>
+      <td style="width:20%"><% @in_progress.each do |card| %><%= render 'card_label', :card => card  %><% end %></td>
+      <td style="width:20%"><% @in_review.each do |card| %><%= render 'card_label', :card => card  %><% end %></td>
+      <td style="width:20%"><% @in_qa.each do |card| %><%= render 'card_label', :card => card  %><% end %></td>
+      <td style="width:20%"><% @done.each do |card| %><%= render 'card_label', :card => card  %><% end %></td>
     </tr>
 
     <tr>
       <td><h6><%= pluralize(@to_do.sum('points'), 'Point') %></h6></td>
       <td><h6><%= pluralize(@in_progress.sum('points'), 'Point') %></h6></td>
+      <td><h6><%= pluralize(@in_review.sum('points'), 'Point') %></h6></td>
       <td><h6><%= pluralize(@in_qa.sum('points'), 'Point') %></h6></td>
       <td><h6><%= pluralize(@done.sum('points'), 'Point') %></h6></td>
     </tr>

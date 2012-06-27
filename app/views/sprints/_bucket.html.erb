@@ -1,4 +1,4 @@
-  <% if bucket.count %>
+  <% if bucket && bucket.count %>
     <% bucket.each do |card| %>
       <%= render 'card_label', :card => card %>
     <% end %>
