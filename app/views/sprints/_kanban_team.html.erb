@@ -14,7 +14,7 @@
         <td style="width:20%"><%= developer %></td>
         <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'In Progress' %><% end %></td>
         <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'In Review' %><% end %></td>
-        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Resolved' %><% end %></td>
+        <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'In QA' %><% end %></td>
         <td style="width:20%"><% cards.each do |card| %><%= render 'card_label', :card => card if card.status == 'Closed' %><% end %></td>
       </tr>
     <% end %>
