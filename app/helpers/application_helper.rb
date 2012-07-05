@@ -14,7 +14,12 @@ module ApplicationHelper
   def reload_sprint(id)
     @sprint = Sprint.find(id)
     sprint = HTTParty.get("http://jira.wantsa.com:38881/rest/api/2/search?jql=fixVersion=#{@sprint.xid}",{:basic_auth => auth})
+    sprint_cards = []
+    
     sprint['issues'].each do |sprint_card|
+      
+      sprint_cards << sprint_card['key']
+
       @card = Card.find_by_key(sprint_card['key'])
       if !@card
         @card = Card.create({ :key => sprint_card['key'] })
@@ -35,6 +40,12 @@ module ApplicationHelper
       @card.status = sprint_card['fields']['status']['name']
       @card.save!
     end
+
+    # remove cards that no longer exist 
+    @sprint.cards.each do |card|
+      card.delete unless sprint_cards.include?(card.key)
+    end
+
   end
   
   def reload_sprint_list
