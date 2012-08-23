@@ -53,7 +53,7 @@ class SprintsController < ApplicationController
     @bugs = @cards.where("card_type = 'Bug'")
     @tasks = @cards.where("card_type = 'Task'")
     
-    @to_do = @cards.where("status = 'Open'").order("card_updated desc")
+    @to_do = @cards.where("status IN ('Open','Reopened')").order("card_updated desc")
     @in_progress = @cards.where("status = 'In Progress'").order("card_updated desc")
     @in_review = @cards.where("status = 'In Review'").order("card_updated desc")
     @in_qa = @cards.where("status = 'In QA'").order("card_updated desc")
