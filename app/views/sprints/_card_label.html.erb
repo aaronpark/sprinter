@@ -8,11 +8,11 @@
   <% badgeclass = '' %>
 <% end %>
 
-<a
-  href="http://jira.wantsa.com:38881/browse/<%= card.key %>"
-  target="_blank"
+
+
+<a class="label <%= badgeclass %>"
+	href="#"
+  id="example1"
   rel="popover"
-  data-content="<h4><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h4> <br> <%= truncate(raw(card.description).html_safe.gsub("\n", '<br/>'), :length => 200) %>"
-  data-original-title="<%= card.key %><% if card.card_type == 'Story' %> <span class='pull-right label <%= badgeclass %>'><%= pluralize(card.points,'point') %></span><% end %> ">
-<span class="label <%= badgeclass %>"><%= card.key %></span>
-</a>
+  data-content="<h4><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h4> <br> <%= truncate(raw(card.description).html_safe.gsub("\n", '<br/>'), :length => 200) %> "
+  data-original-title="<a href='http://jira.wantsa.com:38881/browse/<%= card.key %>' target='_blank'><%= card.key %></a><% if card.card_type == 'Story' %> <span class='pull-right label <%= badgeclass %>'><%= pluralize(card.points,'point') %></span><% end %> "><%= card.key %></a>
