@@ -59,6 +59,8 @@ class SprintsController < ApplicationController
     @in_qa = @cards.where("status = 'In QA'").order("card_updated desc")
     @done = @cards.where("status = 'Closed'").order("card_updated desc")
 
+    @wip = @cards.where("status IN ('In Progress','In Review', 'In QA')").order("card_updated desc")
+
     @done_each_day = []
     @points_remaining = []
     @days = []
@@ -71,7 +73,10 @@ class SprintsController < ApplicationController
     @workdays_in_sprint = work_days_between(@sprint.start_date,@sprint.end_date)
     @developers = @cards.where("status <> 'Open' AND (status <> 'Closed' OR (card_updated > '#{1.day.ago}'))").order("assignee, card_updated desc").group_by { |t| t.assignee }
 
-    
+    @sprint_progress_to_do = @to_do.sum('points').to_f / @points_this_sprint * 100
+    @sprint_progress_wip = @wip.sum('points').to_f / @points_this_sprint * 100
+    @sprint_progress_done = @done.sum('points').to_f / @points_this_sprint * 100
+
     days_so_far = 0
     done_so_far = 0
     index = 0
@@ -97,17 +102,11 @@ class SprintsController < ApplicationController
           end
           done_so_far = done_so_far + done_this_day
           @points_remaining << @points_this_sprint - done_so_far      
-          if @points_this_sprint - done_so_far > target_high_point
-            @progress_status = 'progress-danger'
-          else
-            @progress_status = 'progress-success'
-          end  
-          @sprint_progress = days_so_far/@workdays_in_sprint.to_f*100
         end 
-        
       end
     end
-    
+
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @sprint }

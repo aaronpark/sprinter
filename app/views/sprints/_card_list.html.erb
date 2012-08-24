@@ -9,8 +9,8 @@
     <% for card in cards %>
       <tr>
         <td style="white-space:nowrap"><%= render 'card_label', :card => card %></td>
-        <td><h4><%= card.summary %></h4></td>
-        <td style="white-space:nowrap"><h4><%= card.assignee %><br><%= card.card_status %></h4></td>
+        <td><strong><%= card.summary %></strong></td>
+        <td style="white-space:nowrap"><strong><%= card.assignee %><br><%= card.card_status %></strong></td>
       </tr>
     <% end %>
     </tbody>

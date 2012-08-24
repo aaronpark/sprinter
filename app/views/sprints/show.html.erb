@@ -1,7 +1,10 @@
 <div class="row-fluid">
   <div class="span8">
-    <div class="progress progress-striped <%= @progress_status %>">
-      <div class="bar " style="width: <%= @sprint_progress %>%"><%= @sprint_progress.to_i %>%</div>
+
+    <div class="progress">
+      <div class="bar bar-danger" style="width: <%= @sprint_progress_to_do %>%"><%= @to_do.sum('points') %></div>
+      <div class="bar bar-warning" style="width: <%= @sprint_progress_wip %>%"><%= @wip.sum('points') %></div>
+      <div class="bar bar-success" style="width: <%= @sprint_progress_done %>%"><%= @done.sum('points') %></div>
     </div>
 
     <div class="tabbable"> <!-- Only required for left/right tabs -->
