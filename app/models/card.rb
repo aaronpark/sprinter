@@ -4,11 +4,13 @@ class Card < ActiveRecord::Base
   
   def card_status
     
-    if self.status == 'Open'
+    if self.status == 'Open' || self.status == 'Reopened'
       'To Do'
     elsif self.status == 'In Progress'
       'In Progress'
-    elsif self.status == 'Resolved'
+    elsif self.status == 'In Review'
+      'In Review'
+    elsif self.status == 'In QA'
       'In QA'
     elsif self.status == 'Closed'
       'Done'
