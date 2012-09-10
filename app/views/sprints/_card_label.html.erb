@@ -10,9 +10,10 @@
 
 
 
-<a class="label <%= badgeclass %>"
+<a class="card_label label <%= badgeclass %>"
 	href="#"
   id="example1"
   rel="popover"
-  data-content="<h4><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h4> <br> <%= truncate(raw(card.description).html_safe.gsub("\n", '<br/>'), :length => 200) %> "
+  data-trigger="hover"
+  data-content="<h4><%= raw(card.summary).html_safe.gsub("\n", '<br/>') %></h4> <br> <%= truncate(raw(card.description).html_safe.gsub("\n", '<br/>'), :length => 180) %> "
   data-original-title="<a href='http://jira.wantsa.com:38881/browse/<%= card.key %>' target='_blank'><%= card.key %></a><% if card.card_type == 'Story' %> <span class='pull-right label <%= badgeclass %>'><%= pluralize(card.points,'point') %></span><% end %> "><%= card.key %></a>
